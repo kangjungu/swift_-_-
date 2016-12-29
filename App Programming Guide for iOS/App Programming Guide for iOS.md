@@ -66,5 +66,74 @@ You use the state transitions to adjust your app's behaviors accordingly.
 -상태전환을 사용하여 앱의 동작을 적절하게 조정해야합니다.
 
 --
+###Apps Must Run Efficiently in a Multitasking Environment  
+-앱은 멀티태스킹 환경에서 효율적으로 실행되어야합니다.  
+
+--  
+Battery life is important for users, as is performance, responsiveness, and a great user experience.  
+-배터리 라이프는 퍼포먼스와 반응성과 뛰어난 사용자 경험 만큼 사용자 에게 중요합니다.  
+Minimizing your app's usage of the battery ensures that user can your app all day without having to recharge the device, but launching and being ready to run quickly are also important.  
+-유저가 앱을 하루종일 디바이스 충전없이 사용할수 있게 앱의 배터리 사용량의 최소화를 보장해야합니다. 그러나 실행은 빠르게 하는것 또한 중요합니다.  
+The iOS multitasking implementation offers good battery life without sacrificing the responsiveness and user experience that users expect, but the implementation requires apps to adopt system-provided behaviors.  
+-iOS 멀티 테스팅 구현은 사용자가 기대하는 사용자 경험과 반응성의 희생없이 좋은 배터리 라이프를 제공합니다. 그러나 구현은 앱은 시스템이 제공하는 동작으로 해야합니다.
+
+--
+###Communication Between Apps Follows Specific Pathways  
+-어플리케이션간의 통신을 특별한 경로를 따릅니다.
+
+--
+For security, iOS apps run in a sandbox and have limited interactions with other apps.  
+-보안을 위해서 iOS 어플리케이션은 샌드박스 안에서 실행이 되고 다른 어플리케이션과의 상호작용은 제한됩니다.
+When you want to communicate with other apps on the system, there are specific ways to do so.   
+-시스템 위의 다른 어플리케이션과 상호작용을 하기 윈한다면, 특정한 방법이 있습니다.
+
+--
+###Performance Tuning is Important for Apps  
+-퍼보먼스 조율은 앱에서 중요합니다.
+
+--
+Every task perfomed by an app has a power cost associated with it.  
+-앱이 수행되는 모든 일은 이것과 연관된 전력 비용이 있습니다.  
+Apps that drain the user's battery create a negative user experience and are more likely to be deleted than those that to run for days on a single charge.  
+-유저 배터리를 소모하는 앱은 부정적인 유저 경험을 만들고 한번 충전후 여러 날동안 실행되는 어플리케이션보다  삭제 가능성이 큽니다.  
+So be aware of the cost of different operation and take advantage of power-saving measures offered by the system.  
+-따라서 다른 작업의 비용을 인식하고 시스템에서 제공하는 절전 방법을 이용하십시오.
+
+--
+###How to Use This Document  
+-문서 사용 방법
+
+--
+This document is not beginner's guide to creating iOS apps.  
+-이 문서는 iOS 앱을 만들기 위한 초보자 가이드가 아닙니다.  
+It is for developers who are ready to polish their app before putting it in the App Store.  
+-이것은 앱스토어에 앱을 올리기 전에 앱을 다룰 준비가 된 개발자들을 위한것입니다.  
+Use this document as a guide to understanding how your app interacts with the system and what is must do to make those interactions happen smoothly.  
+-어떻게 어플리케이션과 시스템이 상호작용하는지 이해하기 위해서 또는 상호작용이 원활하게 이루어지도록 하기 위해 꼭 해야할 작업을 알고 싶을때는 이 문서를 사용하세요.
+
+--
+###Prerequisites  
+-전제조건 
+
+--
+This document provides detailed information about iOS app architecture and shows you how to implement many app-level features.  
+-이 문서는 iOS app 아키텍쳐에 대해서 자세한 정보를 제공하고 다양한 어플리케이션-레벨 기능을 구현할수 있는지 보여줍니다.  
+This book assumes that you have already installed the iOS SDK, configured your development environment, and understand the basics of creating and implementing an app in Xcode.  
+-이 책은 당신이 이미 iOS SDK를 설치했고 어플리케이션 개발 환경을 설정하였고 Xcode에서 어플리케이션 기본 생성 및 구현을 이해하고있다고 가정합니다. 
+  
+If you are new iOS app development, read [Start Developing iOS Apps (swift)](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214 "swift").  
+-만약 당신이 새로운 iOS 앱 개발자라면 [Start Developing iOS Apps (swift)](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214 "swift") 이 링크를 읽어보세요.  
+That document offers a step-by-step introduction to the development process to help you get up to speed quickly.  
+-이 문서는 당신이 빠르게 처리할 수 있게 개발 과정을 단계별로 소개를  제공합니다.  
+It also includes a hands-on tutorial that walks you through the app-creation process from start to finish, showing you how to create a simple app and get it running quickly.  
+-또한 어플리케이션의 시작부터 끝까지의 프로세스를 안내하는 실습 자습서가 포함되어 간단한 앱을 빠르게 실행 하는 방법을 보여줍니다.
+
+--
+###See Also  
+-또한 볼 것 
+ 
+--
+If you are learning about iOS, read [iOS Technology OverView](https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007898 "Technology OverView") to learn about the technologies and feautres you can incorporate into your iOS apps.  
+-만약 당신이 iOS에 대하여 배우고 있다면 [Technology OverView](https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007898 "Technology OverView")을 읽어 iOS 앱에 대해 통합 할 수 있는 기술과 기능에 대해서 배워보세요.
 
 
