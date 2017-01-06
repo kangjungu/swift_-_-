@@ -81,13 +81,36 @@ iOS app bundle 구조에 대해 더 많은 정보를 얻으려면 [Bundle Progra
 For information about how to load resource files from your bundle, see [Resource Programming Guide](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i).   
 어떻게 번들에 있는 리소스 파일들을 로드 하는지에 대한 정보를 얻으려면 [Resource Programming Guide](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i) 를 보십시오.
 
- 
+--
+###The Information Property List File  
+정보 속성 목록 파일  
 
+Xcode uses information from the General, Capabilities, and info tabs of your project to generate an information property list(**Info.plist**) file for your app at compile time.    
+Xcode는 프로젝트의 일반, 기능, 그리고 정보 탭에 있는 정보를 사용하여 **Info.plist** 파일을 어플리케이션을 컴파일 할때 정의합니다.  
+The **Info.plist** file is a structured file that contains critical information about your app's configuration.  
+**Info.plist** 파일은 어플리케이션 환경 설정에 중요한 정보를 포함한 구조화된 파일입니다.  
+It it used by the App Store and by iOS to determine your app's capabilities and to locate key resources.  
+이 파일은 App Store와 iOS에서 어플리케이션의 기능을 알아내고 주요한 리소스를 찾는데 사용됩니다.  
+Every app must include this file.  
+모든 어플리케이션은 이 파일을 필수적으로 포함 해야 합니다.  
 
+Although the **Info.plist** file provided by Xcode includes default values for all of the required entries, most apps require some changes or addtions.  
+시작하는데 기본적인 기능을 포함한 **Info.plist** 파일을 Xcode 제공하더라도, 대부분의 어플리케이션은 약간의 변경 또는 기능의 추가를 필요로 합니다.  
+Whenever possible, use the General and Capabilities tabs to specify the configuration information for your app.  
+가능하면 일반 탭과 속성 탭을 사용하여 어플리케이션 구성 정보를 지정하십시오.  
+Those tabs contain the most common configuration options available for apps.  
+이 탭들은 어플리케이션을 위한 가장 일반적인 구성 옵션들을 포함하고 있습니다.  
+If you do not see a specific option on either of those tabs, use the Info tab.    
+만약 이 탭들에서 특정 옵션이 보이지 않으면, Info 탭을 사용하십시오.  
 
-
-
-
+For options where Xcode does not provide a custom configuration interface, you must provide appropriate keys and values directly using the Xcode property list editor.    
+Xcode에서 제공하지 않는 커스텀 속성 인터페이스 옵션의 경우, 적절한 키와 값을 Xcode property list editor를 사용하여 제공해야합니다.  
+The Custom iOS Target Properties section of the Info tab contains a summary of the entries to be included in the Info.plist file.  
+Info 탭의 커스텀 iOS 대상 속성 섹션은 Info.plist 파일에 포함될 항목 요약을 포함하고 있습니다.  
+By default, Xcode displays human-readable descriptions of the intended feature but each feature actually corresponds to a unique key in the Info.plist file.  
+기본적으로는 Xcode가 사람이 읽을수 있는 설명들을 보여줍니다.하지만 각각의 특성들은 실제로 Info.plist 파일의 특별한 키와 일치합니다.    
+Most keys are optional and used infrequently, but there are a handful of keys that you should consider when defining any new project:   
+대부분의 키들은 선택적이고 자주 사용되지 않지만, 새로운 프로젝트를 정의할때 고려해야할 몇가지 키가 있습니다.  
 
 
 
