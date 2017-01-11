@@ -110,14 +110,62 @@ Info 탭의 커스텀 iOS 대상 속성 섹션은 Info.plist 파일에 포함될
 By default, Xcode displays human-readable descriptions of the intended feature but each feature actually corresponds to a unique key in the Info.plist file.  
 기본적으로는 Xcode가 사람이 읽을수 있는 설명들을 보여줍니다.하지만 각각의 특성들은 실제로 Info.plist 파일의 특별한 키와 일치합니다.    
 Most keys are optional and used infrequently, but there are a handful of keys that you should consider when defining any new project:   
-대부분의 키들은 선택적이고 자주 사용되지 않지만, 새로운 프로젝트를 정의할때 고려해야할 몇가지 키가 있습니다.  
+대부분의 키들은 선택적이고 자주 사용되지 않지만, 새로운 프로젝트를 정의할때 고려해야할 몇가지 키가 있습니다.    
 
+- **Declare your app's required capabiliteis in the Info tab.**  
+**어플리케이션 필수 기능을 Info 탭에서 선언하십시오.**  
+The Required device capabilities section contains information about the device-level features that your app requires to run.  
+필수적인 디바이스 기능 섹션은 어플리케이션이 구동되는데 필요한 디바이스 레벨의 특성들에 대한 정보를 포함하고 있습니다.  
+The App Store uses the information in this entry to determine the capabilities of your app and to prevent it from being installed on devices that do not support features your app requires.   
+앱스토어는 이 정보를 사용해서 어플리케이션의 기능을 알아내고 어플리케이션이 요청하는 기능을 지원하지 않는 디바이스에는 설치되지 않게 합니다.  
+For more information, see [Declaring the Required Device Capabilities](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW4).  
+더 많은 정보를 원하시면 [Declaring the Required Device Capabilities](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW4)를 보십시오.
 
+- **Apps that require a persistent Wi-Fi connection must declare that fact.**  
+**끊임없이 Wi-Fi 연결을 요청하는 어플리케이션들은 해당 사실을 신고해야합니다.**  
+If your app talks to a server across the network, you can add the Application uses Wi-Fi entry to the Info tab of your project.  
+어플리케이션이 네트워크를 사용하여 서버와 통신하는 경우 프로젝트 Info 탭 어플리케이션이 Wi-Fi 항목을 추가 할수 있습니다.  
+This entry corresponds to the **UIRequiresPersistentWiFi** key in the **Info.plist** file.    
+이 항목은 **Info.plist** 파일의 **UIRequiresPersistentWiFi** key 와 일치합니다.  
+Setting this key to YES prevents iOS from closing the active Wi-Fi connection when it has been inactive for an extended period of time.  
+이 키를 YES 로 셋팅하면 iOS는 오랜 기간동안 비활성 상태 일 때 Wi-Fi가 끊어지는 것을 방지합니다.  
+This key is recommended for all apps that use the network to communicate with a server.  
+이 키는 서버와 네트워크를 사용해 통신하는 모든 어플리케이션에 권장됩니다.
 
+* **Newsstand apps must declare themselves as such.**  
+**뉴스스탠드 어플리케이션은 그 자체로 선언해야합니다.**  
+Include the **UINewsstandApp** key to indicate that your app presents content from the Newsstand app.  
+**UINewsstandApp** key를 포함하고 있다는 것은 어플리케이션의 내용을 뉴스스탠드 어플리케이션에서 보여준다는 것을 의미합니다.
 
+* **Apps that define custom document types must declare those types.**  
+**커스텀 문서 유형을 정의하는 어플리케이션은 해당 유형을 선언해야합니다.**  
+Use the URL Types section of the Info tab to specify icons and UTI information for the document formats that you support.  
+Info 탭의 URL Types 섹션을 사용해서 지원하는 문서 형식에 대해 아이콘과 UTI 정보를 명시하십시오.  
+The system uses this information to identify apps capable of handling specific file types.  
+시스템은 이 정보를 사용하여 특정 파일 유형을 처리할 수 있는 어플리케이션을 식별합니다.  
+For more information about adding document support to your app, see [Document-Based App Programming Guide for iOS](https://developer.apple.com/library/content/documentation/DataManagement/Conceptual/DocumentBasedAppPGiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011149).  
+어플리케이션에 문서 지원을 추가하는 방법에 대한 더 많은 정보는 [Document-Based App Programming Guide for iOS](https://developer.apple.com/library/content/documentation/DataManagement/Conceptual/DocumentBasedAppPGiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011149)를 참조하십시오.
 
+* **Apps can declare any custom URL schemes they support.**  
+**어플리케이션은 지원하는 커스텀 URL scheme를 정의할수 있습니다.**  
+Use the URL Types section of the Info tab to specify the custom URL schemes that your app handles.   
+Info 탭의 URL TYpes 섹션을 사용해서 어플리케이션에서 처리하는 커스텀 URL 스키마를 명시하십시오.  
+Apps can use custom URL schemes to communicate with each other.  
+어플리케이션들은 커스텀 URL 스키마를 사용하여 서로 커뮤니케이션 할수 있습니다.  
+For more information about how to implements support for this feature, see [Using URL Schemes to Communicate with Apps](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1).  
+이 기능 지원에 대해서 어떻게 구현하는지에 대한 정보는 [Using URL Schemes to Communicate with Apps](https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1) 를 보십시오.
 
+* **Apps must provide purpose strings (sometimes called "usage descriptions") for accessing user data and certain app features.**  
+**어플리케이션들은 특정 어플리케이션 기능 및 사용자 데이터 접근을 위한 목적 문자열(때때로 "usage descriptions"라고 불리는)을 필수적으로 제공해야합니다.**  
+When there is a privacy concern about an app accessing user data or device capabilities, iOS prompts the user and requests permission on behalf of your app.  
+어플리케이션이 접근해야하는 유저 데이터나 기기 특징 중에 개인정보를 포함하고 있다면, iOS는 애플리케이션을 대신해 유저에게 퍼미션을 요청합니다.  
+An app must explain to the user, by way of a purpose string defined in tis **Info.plist** file, why it requires access.  
+어플리케이션은 **Info.plist** 파일에 정의된 목적 문자열을 사용하여 사용자에게 접근이 필요한 이유를 설명해야합니다.  
+If your app attempts to gain access without having provided a corresponding purpose string, your app exits.  
+해당 목적 문자열을 제공하지 않고 앱이 액세스하려고하면 앱이 종료됩니다.  
 
+The detailed information about the keys and values you can include in the Info.plist file, see [Information Property List key Reference](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247).  
+Info.plist 파일에 포함 할 수 있는 키와 값에 대한 정확한 정보를 알기원하면 [Information Property List key Reference](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)를 보십시오.
 
 	
 	
